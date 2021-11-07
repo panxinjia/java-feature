@@ -1,11 +1,10 @@
 package com.collection;
 
+import lombok.*;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.function.IntFunction;
 
 /**
  * @author xiaopantx
@@ -41,5 +40,56 @@ public class TestList {
             System.out.println(value);
         }
 
+        System.out.println("-------->容器转数组<----------");
+        Object[] objects = list.toArray();
+        String[] ss = list.toArray(String[]::new);
+        System.out.println(Arrays.toString(ss));
+
+        // == 内存地址是否相同, oop中表达是不是同一个实例, .equals 对象的相等逻辑
+
+        List<Person> people = List.of(new Person("tom"), new Person("jerry"));
+        boolean bool = people.contains(new Person("tom"));
+        System.out.println(bool);
+
+    }
+
+    public static void main(String[] args) {
+        // 构造从start到end的序列：
+        final int start = 10;
+        final int end = 20;
+        List<Integer> list = new ArrayList<>();
+        for (int i = start; i <= end; i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);// 打乱容器元素顺序
+        // 随机删除List中的一个元素:
+        int removed = list.remove((int) (Math.random() * list.size()));
+        int found = findMissingNumber(start, end, list);
+        System.out.println(list.toString());
+        System.out.println("missing number: " + found);
+        System.out.println(removed == found ? "测试成功" : "测试失败");
+    }
+
+    static int findMissingNumber(int start, int end, List<Integer> list) {
+        long startTime = System.nanoTime();
+        int number = -1;
+        for(int i = start; i <= end; i++) {
+            // 是否包含元素
+            if (!list.contains(i)) {
+                number = i;
+            }
+        }
+
+        System.out.println("运行时间: " + (System.nanoTime() - startTime) + " ns");
+        return number;
+    }
+
+    //@EqualsAndHashCode
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class Person {
+        private String name;
     }
 }
