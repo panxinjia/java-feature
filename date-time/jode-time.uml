@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.time.LocalDate</OriginalElement>
+  <nodes>
+    <node x="0.0" y="324.0">java.time.chrono.ChronoLocalDate</node>
+    <node x="197.0" y="324.0">java.time.ZonedDateTime</node>
+    <node x="723.8125" y="324.0">java.time.LocalDateTime</node>
+    <node x="385.0" y="324.0">java.time.Instant</node>
+    <node x="1082.732142857143" y="81.0">java.time.ZoneId</node>
+    <node x="540.4375" y="0.0">java.time.temporal.TemporalAccessor</node>
+    <node x="903.8125" y="324.0">java.time.Duration</node>
+    <node x="444.4136904761905" y="405.0">java.time.LocalDate</node>
+    <node x="-8.5" y="124.0">java.time.format.DateTimeFormatter</node>
+    <node x="558.9375" y="324.0">java.time.LocalTime</node>
+    <node x="370.6875" y="81.0">java.lang.Comparable</node>
+    <node x="1041.875" y="324.0">java.time.ZoneOffset</node>
+    <node x="228.6875" y="81.0">java.time.temporal.Temporal</node>
+    <node x="564.6875" y="81.0">java.time.temporal.TemporalAdjuster</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.time.Instant" target="java.time.temporal.TemporalAdjuster" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="436.5" y="292.0" />
+      <point x="540.5" y="292.0" />
+      <point x="540.5" y="282.0" />
+      <point x="914.375" y="282.0" />
+      <point x="914.375" y="132.0" />
+      <point x="701.9375" y="132.0" />
+      <point x="45.75" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalDate" target="java.time.temporal.TemporalAdjuster" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="506.4136904761905" y="379.0" />
+      <point x="1030.3125" y="379.0" />
+      <point x="1030.3125" y="162.0" />
+      <point x="914.375" y="162.0" />
+      <point x="914.375" y="132.0" />
+      <point x="701.9375" y="132.0" />
+      <point x="45.75" y="14.5" />
+    </edge>
+    <edge source="java.time.ZonedDateTime" target="java.time.temporal.Temporal" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="281.0" y="302.0" />
+      <point x="530.5" y="302.0" />
+      <point x="530.5" y="232.0" />
+      <point x="533.1636904761905" y="232.0" />
+      <point x="533.1636904761905" y="182.0" />
+      <point x="320.1875" y="182.0" />
+      <point x="30.5" y="14.5" />
+    </edge>
+    <edge source="java.time.ZoneOffset" target="java.time.temporal.TemporalAccessor" relationship="REALIZATION">
+      <point x="-33.25" y="-14.5" />
+      <point x="1075.125" y="302.0" />
+      <point x="1076.5625" y="302.0" />
+      <point x="1076.5625" y="132.0" />
+      <point x="1072.232142857143" y="132.0" />
+      <point x="1072.232142857143" y="55.0" />
+      <point x="679.9375" y="55.0" />
+      <point x="46.5" y="14.5" />
+    </edge>
+    <edge source="java.time.chrono.ChronoLocalDate" target="java.lang.Comparable" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="88.5" y="242.0" />
+      <point x="414.1875" y="242.0" />
+      <point x="-43.5" y="14.5" />
+    </edge>
+    <edge source="java.time.ZoneOffset" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="-33.25" y="-14.5" />
+      <point x="1075.125" y="302.0" />
+      <point x="1076.5625" y="302.0" />
+      <point x="1076.5625" y="152.0" />
+      <point x="625.1190476190476" y="152.0" />
+      <point x="625.1190476190476" y="142.0" />
+      <point x="501.1875" y="142.0" />
+      <point x="43.5" y="14.5" />
+    </edge>
+    <edge source="java.time.Instant" target="java.time.temporal.Temporal" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="436.5" y="292.0" />
+      <point x="540.5" y="292.0" />
+      <point x="540.5" y="212.0" />
+      <point x="533.1636904761905" y="212.0" />
+      <point x="533.1636904761905" y="182.0" />
+      <point x="320.1875" y="182.0" />
+      <point x="30.5" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalDateTime" target="java.time.temporal.Temporal" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="803.8125" y="192.0" />
+      <point x="533.1636904761905" y="192.0" />
+      <point x="533.1636904761905" y="182.0" />
+      <point x="320.1875" y="182.0" />
+      <point x="30.5" y="14.5" />
+    </edge>
+    <edge source="java.time.temporal.Temporal" target="java.time.temporal.TemporalAccessor" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="289.6875" y="55.0" />
+      <point x="586.9375" y="55.0" />
+      <point x="-46.5" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalDateTime" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="803.8125" y="182.0" />
+      <point x="625.1190476190476" y="182.0" />
+      <point x="625.1190476190476" y="142.0" />
+      <point x="501.1875" y="142.0" />
+      <point x="43.5" y="14.5" />
+    </edge>
+    <edge source="java.time.Instant" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="436.5" y="292.0" />
+      <point x="540.5" y="292.0" />
+      <point x="540.5" y="262.0" />
+      <point x="625.1190476190476" y="262.0" />
+      <point x="625.1190476190476" y="142.0" />
+      <point x="501.1875" y="142.0" />
+      <point x="43.5" y="14.5" />
+    </edge>
+    <edge source="java.time.chrono.ChronoLocalDate" target="java.time.temporal.Temporal" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="88.5" y="242.0" />
+      <point x="259.1875" y="242.0" />
+      <point x="-30.5" y="14.5" />
+    </edge>
+    <edge source="java.time.Duration" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="961.8125" y="172.0" />
+      <point x="625.1190476190476" y="172.0" />
+      <point x="625.1190476190476" y="142.0" />
+      <point x="501.1875" y="142.0" />
+      <point x="43.5" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalDateTime" target="java.time.temporal.TemporalAdjuster" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="803.8125" y="302.0" />
+      <point x="914.375" y="302.0" />
+      <point x="914.375" y="132.0" />
+      <point x="701.9375" y="132.0" />
+      <point x="45.75" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalDate" target="java.time.temporal.Temporal" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="506.4136904761905" y="379.0" />
+      <point x="498.5" y="379.0" />
+      <point x="498.5" y="222.0" />
+      <point x="533.1636904761905" y="222.0" />
+      <point x="533.1636904761905" y="182.0" />
+      <point x="320.1875" y="182.0" />
+      <point x="30.5" y="14.5" />
+    </edge>
+    <edge source="java.time.ZonedDateTime" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="281.0" y="302.0" />
+      <point x="530.5" y="302.0" />
+      <point x="530.5" y="252.0" />
+      <point x="625.1190476190476" y="252.0" />
+      <point x="625.1190476190476" y="142.0" />
+      <point x="501.1875" y="142.0" />
+      <point x="43.5" y="14.5" />
+    </edge>
+    <edge source="java.time.chrono.ChronoLocalDate" target="java.time.temporal.TemporalAdjuster" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="88.5" y="242.0" />
+      <point x="610.4375" y="242.0" />
+      <point x="-45.75" y="14.5" />
+    </edge>
+    <edge source="java.time.ZoneOffset" target="java.time.temporal.TemporalAdjuster" relationship="REALIZATION">
+      <point x="-33.25" y="-14.5" />
+      <point x="1075.125" y="302.0" />
+      <point x="1076.5625" y="302.0" />
+      <point x="1076.5625" y="142.0" />
+      <point x="914.375" y="142.0" />
+      <point x="914.375" y="132.0" />
+      <point x="701.9375" y="132.0" />
+      <point x="45.75" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalDate" target="java.time.chrono.ChronoLocalDate" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="506.4136904761905" y="379.0" />
+      <point x="88.5" y="379.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalTime" target="java.lang.Comparable" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="621.9375" y="272.0" />
+      <point x="625.1190476190476" y="272.0" />
+      <point x="625.1190476190476" y="142.0" />
+      <point x="501.1875" y="142.0" />
+      <point x="43.5" y="14.5" />
+    </edge>
+    <edge source="java.time.ZoneOffset" target="java.time.ZoneId" relationship="GENERALIZATION">
+      <point x="33.25" y="-14.5" />
+      <point x="1141.625" y="302.0" />
+      <point x="1133.732142857143" y="302.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalTime" target="java.time.temporal.TemporalAdjuster" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="621.9375" y="292.0" />
+      <point x="914.375" y="292.0" />
+      <point x="914.375" y="132.0" />
+      <point x="701.9375" y="132.0" />
+      <point x="45.75" y="14.5" />
+    </edge>
+    <edge source="java.time.LocalTime" target="java.time.temporal.Temporal" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="621.9375" y="202.0" />
+      <point x="533.1636904761905" y="202.0" />
+      <point x="533.1636904761905" y="182.0" />
+      <point x="320.1875" y="182.0" />
+      <point x="30.5" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="592.5" y="254.0" />
+  <SelectedNodes>
+    <node>java.time.format.DateTimeFormatter</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

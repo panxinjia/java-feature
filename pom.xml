@@ -16,6 +16,7 @@
         <module>io</module>
         <module>colleciton</module>
         <module>jdbc</module>
+        <module>date-time</module>
     </modules>
 
     <properties>
