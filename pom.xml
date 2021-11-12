@@ -17,6 +17,7 @@
         <module>colleciton</module>
         <module>jdbc</module>
         <module>date-time</module>
+        <module>network</module>
     </modules>
 
     <properties>
