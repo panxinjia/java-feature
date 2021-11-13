@@ -14,6 +14,49 @@ import java.util.function.IntFunction;
 public class TestList {
 
     @Test
+    public void testImmutable() {
+        // List 接口, 1.7默认容量10, 扩容机制为1.5倍   1.8 默认0, 第一次添加元素容器初始化为10, 后序1.5倍扩容
+        final List<Integer> integers = List.of(1, 23, 4);
+
+        a(List.of(21.1));
+        a(List.of(123));
+        // 泛型限定
+        //a(List.of(new String()));
+
+        String line;
+        String x = line = "abc";
+
+        // 链表结构集合
+        Set<String> set = new LinkedHashSet<String>();
+
+        // 哈希表, 散列表
+        Map<String, String> map = new LinkedHashMap<String, String>();
+
+
+    }
+
+    public static <T extends Number> void a(List<T> list) {
+
+        for (T t : list) {
+            // 泛型处理
+        }
+
+    }
+
+    // 泛型限定
+    public static void b(List<? extends Number> list ) {
+        for (Number ele:
+             list) {
+
+        }
+
+        for (Object o : list) {
+            // 通配
+
+        }
+    }
+
+    @Test
     public void testList() {
         List<String> list =new ArrayList<>();
         list.add("apple");
