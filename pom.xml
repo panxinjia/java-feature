@@ -19,6 +19,7 @@
         <module>date-time</module>
         <module>network</module>
         <module>thread</module>
+        <module>encryption</module>
     </modules>
     <dependencies>
         <dependency>
@@ -32,6 +33,12 @@
             <artifactId>junit-jupiter</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.16</version>
         </dependency>
     </dependencies>
 

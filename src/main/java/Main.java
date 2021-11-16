@@ -1,3 +1,8 @@
+import cn.hutool.core.date.TimeInterval;
+import cn.hutool.core.lang.Console;
+import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.core.util.DesensitizedUtil;
+import cn.hutool.core.util.RuntimeUtil;
 import org.junit.jupiter.api.Test;
 
 import javax.print.event.PrintServiceAttributeListener;
@@ -5,7 +10,9 @@ import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -226,7 +233,77 @@ public class Main {
         // 位数
         System.out.println(Integer.SIZE);
 
-        System.out.println(Byte.BYTES + " " +  Byte.SIZE);
+        System.out.println(Byte.BYTES + " " + Byte.SIZE);
+
+    }
+
+    @Test
+    public void testRuntimeUtil() {
+        RuntimeUtil.execForLines("ifconfig")
+                .stream()
+                .filter(line -> line.contains("192.168"))
+                .forEach(System.out::println);
+
+        long totalMemory = RuntimeUtil.getTotalMemory();
+        System.out.println(totalMemory / 1024 / 1024);
+    }
+
+    @Test
+    public void testDesensitizedUtil() {
+        // 数据脱敏工具
+        String phone = DesensitizedUtil.mobilePhone("1361071075");
+        System.out.println(phone);
+
+        String cardNum = DesensitizedUtil.idCardNum("130324199409293011", 3, 4);
+        System.out.println(cardNum);
+
+        String email = DesensitizedUtil.email("m15132582590@163.com");
+        System.out.println(email);
+
+        String pwd = DesensitizedUtil.password("root");
+        System.out.println(pwd);
+
+        String chineseName = DesensitizedUtil.chineseName("张三");
+        System.out.println(chineseName);
+
+        Long userId = DesensitizedUtil.userId();
+        System.out.println(userId);
+
+        String address = DesensitizedUtil.address("北京市房山区,稻田镇", 5);
+        System.out.println(address);
+
+        // 脱敏工具
+        String desensitized = DesensitizedUtil.desensitized("13610710475", DesensitizedUtil.DesensitizedType.MOBILE_PHONE);
+        System.out.println(desensitized);
+
+        final TimeInterval interval = new TimeInterval();
+    }
+
+    @Test
+    public void testTimeInterval() {
+//        TimeInterval interval = new TimeInterval();
+//
+//        interval.start("1");
+//        ThreadUtil.sleep(1000);
+//
+//        interval.start("2");
+//        ThreadUtil.sleep(2000);
+//
+//        System.out.println("group-1 -> " + interval.interval("1"));
+//        System.out.println("group-2 -> " + interval.interval("2"));
+
+        final TimeInterval timer = new TimeInterval();
+
+// 分组1
+        timer.start("1");
+        ThreadUtil.sleep(800);
+
+// 分组2
+        timer.start("2");
+        ThreadUtil.sleep(900);
+
+        Console.log("Timer 1 took {} ms", timer.intervalMs("1"));
+        Console.log("Timer 2 took {} ms", timer.intervalMs("2"));
 
     }
 }

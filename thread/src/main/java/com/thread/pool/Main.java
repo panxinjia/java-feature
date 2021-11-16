@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.LockSupport;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -179,15 +180,15 @@ public class Main {
         // allOf anyOf
         CompletableFuture.allOf(
                         CompletableFuture.<Integer>supplyAsync(() -> {
-                            System.out.println(1);
+                            ThreadUtil.sleep(1000);
                             return 1;
                         }),
                         CompletableFuture.<Integer>supplyAsync(() -> {
-                            System.out.println(2);
+                            ThreadUtil.sleep(1000);
                             return 2;
                         }),
                         CompletableFuture.<Integer>supplyAsync(() -> {
-                            System.out.println(3);
+                            ThreadUtil.sleep( 10000);
                             return 3;
                         }))
                 .thenAccept(result -> {
@@ -197,21 +198,25 @@ public class Main {
 
         CompletableFuture.anyOf(
                         CompletableFuture.<Integer>supplyAsync(() -> {
+                            ThreadUtil.sleep(2000);
                             System.out.println(1);
                             return 1;
                         }),
                         CompletableFuture.<Integer>supplyAsync(() -> {
+                            ThreadUtil.sleep(2000);
                             System.out.println(2);
                             return 2;
                         }),
                         CompletableFuture.<Integer>supplyAsync(() -> {
-                            System.out.println(3);
+                            ThreadUtil.sleep(3000);
                             return 3;
                         }))
                 .thenAccept(result -> {
                     System.out.println("anyOf = " + result);
                 })
                 .exceptionally(Void.TYPE::cast);
+
+        LockSupport.park();
     }
 
 }

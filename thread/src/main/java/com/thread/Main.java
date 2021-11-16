@@ -6,14 +6,19 @@ import cn.hutool.core.thread.ThreadUtil;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -86,13 +91,13 @@ public class Main {
                 while (true) {
                     // 同步代码块
 
-                        if (tickets > 0) {
-                            ThreadUtil.sleep(20);
-                            System.out.println(Thread.currentThread().getName() + " 卖出第[" + tickets-- + "]张票");
-                        } else {
-                            break;
-                        }
+                    if (tickets > 0) {
+                        ThreadUtil.sleep(20);
+                        System.out.println(Thread.currentThread().getName() + " 卖出第[" + tickets-- + "]张票");
+                    } else {
+                        break;
                     }
+                }
             }
 
         };
@@ -193,14 +198,14 @@ public class Main {
         try {
             lock.lock();
             // 同步区域
-        }finally {
+        } finally {
             lock.unlock();
         }
 
         if (lock.tryLock()) { // lock 被锁定时, 不会进入阻塞状态, 立即向下执行
             try {
                 // 同步代码块
-            }finally {
+            } finally {
                 lock.unlock();
             }
         }
@@ -224,6 +229,7 @@ public class Main {
         public void setFlag(boolean flag) {
             this.flag = flag;
         }
+
         @Override
         public void run() {
             while (true) {
@@ -233,7 +239,7 @@ public class Main {
                             System.out.println(Thread.currentThread().getName() + " -> " + flag);
                         }
                     }
-                }else {
+                } else {
                     synchronized (Lock_B) {
                         synchronized (Lock_A) {
                             System.out.println(Thread.currentThread().getName() + " -> " + flag);
@@ -263,4 +269,97 @@ public class Main {
 
 
     }
+
+    @SneakyThrows
+    @Test
+    public void testCounter() {
+        final TimeInterval interval = DateUtil.timer();
+        interval.start();
+        Thread t1 = new Thread(() -> {
+            IntStream.rangeClosed(1, 100_0000) // load add store
+                    .forEach(val -> {
+//                        Counter.cnt += 1;
+                        Counter.ai.incrementAndGet();
+                    });
+        });
+        Thread t2 = new Thread(() -> {
+            IntStream.rangeClosed(1, 100_0000)
+                    .forEach(val -> {
+//                        Counter.cnt+=1;
+                        Counter.ai.incrementAndGet();
+                    });
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println("interval = " + interval.intervalRestart());
+        System.out.println("cnt = " + Counter.cnt);
+        System.out.println("ai = " + Counter.ai.get());
+        System.out.println("main end");
+
+
+
+
+    }
+
+    static class Counter {
+        public static int cnt = 0;
+        // 支持原子操作的值
+        public static AtomicInteger ai = new AtomicInteger(0);
+    }
+
+    @Test
+    public void testNotify() {
+        final TaskQueue queue = new TaskQueue();
+
+        new Thread(() -> {
+            while (true) {
+                queue.addTask(UUID.randomUUID().toString());
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        new Thread(() -> {
+            while (true){
+                final String ret = queue.getTask();
+                System.out.println("消费: " + ret);
+            }
+        }).start();
+
+        LockSupport.park();
+        System.out.println("main");
+    }
+
+    static class TaskQueue {
+        private Queue<String> task = new LinkedList<>();
+
+        @SneakyThrows
+        public synchronized boolean addTask(String task) {
+            boolean flag = this.task.offer(task);
+            while (!flag) {
+                this.wait();
+            }
+
+            this.notify();
+
+            return flag;
+        }
+
+        @SneakyThrows
+        public synchronized String getTask() {
+            while(this.task.isEmpty()) {
+                // 等待
+                this.wait();
+            }
+            String ele = this.task.remove();
+            this.notifyAll();
+            return ele;
+        }
+    }
 }
+
