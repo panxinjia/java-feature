@@ -20,6 +20,7 @@
         <module>network</module>
         <module>thread</module>
         <module>encryption</module>
+        <module>junit</module>
     </modules>
     <dependencies>
         <dependency>
